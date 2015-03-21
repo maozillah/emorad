@@ -48,6 +48,7 @@ void draw() {
       if (contour.numPoints() > 50) {
 
         stroke(0, 200, 200);
+        // fill in here would affect background
         beginShape();
 
         for (PVector point : contour.getPolygonApproximation ().getPoints()) {
@@ -58,6 +59,7 @@ void draw() {
     }
   }
 
+  // box with attributes
   noStroke();
   fill(0);
   rect(0, 0, 130, 100);
