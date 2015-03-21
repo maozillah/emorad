@@ -6,15 +6,15 @@ OpenCV opencv;
 
 float polygonFactor = 1;
 
-int threshold = 10;
+int threshold = 200;
 
 float maxD = 4.0f;
 float minD = 0.5f;
 
-boolean    contourBodyIndex = false;
+//boolean    contourBodyIndex = true;
 
 void setup() { 
-  size(512*3, 424, P3D);
+  size(512*2, 424, P3D);
   opencv = new OpenCV(this, 512, 424);
   kinect = new KinectPV2(this);
   kinect.enablePointCloud(true);
@@ -28,28 +28,17 @@ void draw() {
   background(0);
 
   noFill();
-  strokeWeight(3);
-
-  image(kinect.getDepthImage(), 0, 0);
+  strokeWeight(1);
   
-  //change contour extraction from bodyIndexImg or to PointCloudDepth
-  if (contourBodyIndex)
-    image(kinect.getBodyTrackImage(), 512, 0);
-  else
-    image(kinect.getPointCloudDepthImage(), 512, 0);
+  // bodyIndexImg 
+    image(kinect.getBodyTrackImage(), 0, 0);
 
-  if (contourBodyIndex) {
     opencv.loadImage(kinect.getBodyTrackImage());
     opencv.gray();
     opencv.threshold(threshold);
     PImage dst = opencv.getOutput();
-  } else {
-    opencv.loadImage(kinect.getPointCloudDepthImage());
-    opencv.gray();
-    opencv.threshold(threshold);
-    PImage dst = opencv.getOutput();
-  }
-
+    
+    //outlines 
   ArrayList<Contour> contours = opencv.findContours(false, false);
 
   if (contours.size() > 0) {
@@ -62,7 +51,7 @@ void draw() {
         beginShape();
 
         for (PVector point : contour.getPolygonApproximation ().getPoints()) {
-          vertex(point.x + 512*2, point.y);
+          vertex(point.x + 512, point.y);
         }
         endShape();
       }
@@ -84,14 +73,6 @@ void draw() {
 
 
 void keyPressed() {
-  //change contour finder from contour body to depth-PC
-  if( key == 'b'){
-   contourBodyIndex = !contourBodyIndex;
-   if(contourBodyIndex)
-     threshold = 200;
-    else
-     threshold = 40;
-  }
   
   if (key == 'a') {
     threshold+=1;
