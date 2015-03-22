@@ -1,8 +1,6 @@
-import gab.opencv.*;
 import KinectPV2.*;
 
 KinectPV2 kinect;
-OpenCV opencv;
 
 // what does this really do?
 int threshold = 10;
@@ -12,7 +10,7 @@ float minD = 0.5f;
 
 void setup() { 
   size(512, 424, P3D);
-  opencv = new OpenCV(this, 512, 424);
+//  opencv = new OpenCV(this, 512, 424);
   kinect = new KinectPV2(this);
 
   kinect.enableBodyTrackImg(true);
@@ -24,12 +22,8 @@ void draw() {
   background(0);
   
   // bodyIndexImg 
+  //color should be related to this function
     image(kinect.getBodyTrackImage(), 0, 0);
-
-    opencv.loadImage(kinect.getBodyTrackImage());
-    opencv.gray();
-    opencv.threshold(threshold);
-    PImage dst = opencv.getOutput();
 
   // box with attributes
   noStroke();
