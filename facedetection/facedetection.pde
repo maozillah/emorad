@@ -17,6 +17,7 @@ void setup() {
 
 void draw() {
   background(0);
+  ellipse(width/2, 100, 70, 70);
 
   image(kinect.getColorImage(), 0, 0);
 
@@ -62,6 +63,8 @@ void draw() {
 
   fill(255);
   text("frameRate "+frameRate, 50, 50);
+  
+
 }
 
 
@@ -95,12 +98,18 @@ String getStateTypeAsString(int state, int type) {
   switch(state) {
   case KinectPV2.DetectionResult_Unknown:
     str += ": Unknown";
+    fill(255, 0, 0);
+    ellipse(width/2, 100, 70, 70);
     break;
   case KinectPV2.DetectionResult_Yes:
     str += ": Yes";
+    fill(0, 255, 0);
+    ellipse(width/2, 100, 70, 70);
     break;  
   case KinectPV2.DetectionResult_No:
     str += ": No";
+    fill(255, 0, 0);
+    ellipse(width/2, 100, 70, 70);
     break;
   }
 
