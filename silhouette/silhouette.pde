@@ -4,7 +4,7 @@ import KinectPV2.*;
 KinectPV2 kinect;
 
 // what does this really do?
-int threshold = 10;
+int threshold = 200;
 
 float maxD = 4.0f;
 float minD = 0.5f;
@@ -58,6 +58,9 @@ void draw() {
   destination.updatePixels();
   // Display the destination
   image(destination,0,0);
+  
+  // crazy lag if blur
+//  filter(BLUR, 6);
   
   // box with attributes
   noStroke();
