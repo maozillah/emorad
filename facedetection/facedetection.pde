@@ -18,7 +18,8 @@ void setup() {
 void draw() {
   background(0);
   ellipse(width/2, 100, 70, 70);
-
+  
+  //shows background image
   image(kinect.getColorImage(), 0, 0);
 
   faceData =  kinect.getFaceData();
