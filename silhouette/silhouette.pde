@@ -37,6 +37,7 @@ void draw() {
     opencv.gray();
     opencv.threshold(threshold);
     PImage dst = opencv.getOutput();
+
     
     //outlines 
   ArrayList<Contour> contours = opencv.findContours(false, false);
@@ -48,11 +49,17 @@ void draw() {
       if (contour.numPoints() > 50) {
 
         stroke(0, 200, 200);
+        fill(153);
+       
         beginShape();
 
         for (PVector point : contour.getPolygonApproximation ().getPoints()) {
           vertex(point.x, point.y);
+          
+          fill(153);
+          ellipse(point.x, point.y, 2, 2);
         }
+        
         endShape();
       }
     }
@@ -69,6 +76,10 @@ void draw() {
 
   kinect.setLowThresholdPC(minD);
   kinect.setHighThresholdPC(maxD);
+  
+   if ( keyPressed ) {
+    saveFrame("process/##.png");
+  }
 }
 
 
