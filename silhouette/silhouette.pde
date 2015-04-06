@@ -104,25 +104,30 @@ void draw() {
     //    }
     
 //    destination.updatePixels();
-//    // Display the destination
+    // Display the destination
 //    image(destination, 0, 0);
-//
-//    // box with attributes
-//    noStroke();
-//    fill(0);
-//    rect(0, 0, 130, 100);
-//    fill(255, 0, 0);
-//    text("fps: " + frameRate, 20, 20);
-//    text("threshold: " + threshold, 20, 40);
-//    text("minD: " + minD, 20, 60);
-//    text("maxD: " + maxD, 20, 80);
-//
-//    kinect.setLowThresholdPC(minD);
-//    kinect.setHighThresholdPC(maxD);
+
+    // box with attributes
+    noStroke();
+    fill(0);
+    rect(0, 0, 130, 100);
+    fill(255, 0, 0);
+    text("fps: " + frameRate, 20, 20);
+    text("threshold: " + threshold, 20, 40);
+    text("minD: " + minD, 20, 60);
+    text("maxD: " + maxD, 20, 80);
+
+    kinect.setLowThresholdPC(minD);
+    kinect.setHighThresholdPC(maxD);
+    
+    image(cam, 0,0);
+    
 
 ///////////////////////////////////////////////////
     // copy the image into the smaller blob image 
     blobs.copy(cam, 0, 0, cam.width, cam.height, 0, 0, blobs.width, blobs.height);
+
+image(blobs, 0,0);
 
     // blur the blob image
     blobs.filter(BLUR);
@@ -134,7 +139,6 @@ void draw() {
     poly.createPolygon();
     drawFlowfield();
 
-    
     // screenshots, why does it save two
     if (keyPressed) {
         saveFrame("process/##.png");
