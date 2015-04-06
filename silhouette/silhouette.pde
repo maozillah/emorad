@@ -9,7 +9,7 @@ float polygonFactor = 1;
 int threshold = 200;
 
 float maxD = 4.0;
-float minD = 0.5f;
+float minD = 0.5;
 
 //boolean    contourBodyIndex = true;
 
@@ -37,7 +37,6 @@ void draw() {
     opencv.gray();
     opencv.threshold(threshold);
     PImage dst = opencv.getOutput();
-
     
     //outlines 
   ArrayList<Contour> contours = opencv.findContours(false, false);
@@ -49,7 +48,6 @@ void draw() {
       if (contour.numPoints() > 50) {
 
         stroke(0, 200, 200);
-        fill(153);
        
         beginShape();
 
