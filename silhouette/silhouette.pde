@@ -8,13 +8,13 @@ float polygonFactor = 1;
 
 int threshold = 200;
 
-float maxD = 4.0f;
+float maxD = 4.0;
 float minD = 0.5f;
 
 //boolean    contourBodyIndex = true;
 
 void setup() { 
-  size(512*2, 424, P3D);
+  size(512, 424, P3D);
   opencv = new OpenCV(this, 512, 424);
   kinect = new KinectPV2(this);
   kinect.enablePointCloud(true);
@@ -31,7 +31,7 @@ void draw() {
   strokeWeight(1);
   
   // bodyIndexImg 
-    image(kinect.getBodyTrackImage(), 0, 0);
+//    image(kinect.getBodyTrackImage(), 0, 0);
 
     opencv.loadImage(kinect.getBodyTrackImage());
     opencv.gray();
@@ -51,7 +51,7 @@ void draw() {
         beginShape();
 
         for (PVector point : contour.getPolygonApproximation ().getPoints()) {
-          vertex(point.x + 512, point.y);
+          vertex(point.x, point.y);
         }
         endShape();
       }
