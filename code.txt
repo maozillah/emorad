@@ -1,0 +1,61 @@
+String[] palettes = {
+    "-1117720,-13683658,-8410437,-9998215,-1849945,-5517090,-4250587,-14178341,-5804972,-3498634",
+    "-67879,-9633503,-8858441,-144382,-4996094,-16604779,-588031",
+    "-16711663,-13888933,-9029017,-5213092,-1787063,-11375744,-2167516,-15713402,-5389468,-2064585"
+};
+
+void setRandomColors(int nthFrame) {
+  if (frameCount % nthFrame == 0) {
+    // turn a palette into a series of strings
+    String[] paletteStrings = split(palettes[int(random(palettes.length))], ",");
+    // turn strings into colors
+    color[] colorPalette = new color[paletteStrings.length];
+    for (int i=0; i<paletteStrings.length; i++) {
+      colorPalette[i] = int(paletteStrings[i]);
+    }
+    // set background color to first color from palette
+    bgColor = colorPalette[0];
+    // set all particle colors randomly to color from palette (excluding first aka background color)
+    for (int i=0; i<flow.length; i++) {
+      flow[i].col = colorPalette[int(random(1, colorPalette.length))];
+    }
+  }
+}
+
+--
+
+color col; // color
+ // individual particle color
+    stroke(col);
+
+Particle[] flow = new Particle[2250];
+
+for (Particle p : flow) {
+    p.updateAndDisplay();
+  }
+  
+--
+
+have particles bounce between skeleton joints?
+
+//under draw
+    color col  = getIndexColor(i);
+
+//use different color for each skeleton tracked
+color getIndexColor(int index) {
+  color col = color(255);
+  if (index == 0)
+    col = color(255, 0, 0);
+  if (index == 1)
+    col = color(0, 255, 0);
+  if (index == 2)
+    col = color(0, 0, 255);
+  if (index == 3)
+    col = color(255, 255, 0);
+  if (index == 4)
+    col = color(0, 255, 255);
+  if (index == 5)
+    col = color(255, 0, 255);
+
+  return col;
+}
