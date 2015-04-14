@@ -22,7 +22,7 @@ class Mover3 {
     // Start in the center
     location = new PVector(random(width),random(height));
     velocity = new PVector(0,0);
-    topspeed = 10;
+    topspeed = 7;
     color[] colarray = new color[30];
  
     colarray[0] = color(125,190,167);

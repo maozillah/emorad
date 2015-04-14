@@ -95,7 +95,7 @@ void draw() {
       KJoint[] joints = skeleton[i].getJoints();
       
       PVector attractor = new PVector( joints[KinectPV2.JointType_SpineMid].getX(), joints[KinectPV2.JointType_SpineMid].getY() ); 
-      
+      PVector attractorHand = new PVector( joints[KinectPV2.JointType_HandRight].getX(), joints[KinectPV2.JointType_HandRight].getY() );
       if(i == 0){
         for (int j = 0; j < movers.length; j++) {
       
