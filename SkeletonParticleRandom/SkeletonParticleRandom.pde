@@ -25,12 +25,12 @@ import KinectPV2.KJoint;
 import KinectPV2.*;
 
 KinectPV2 kinect;
-Mover[] movers = new Mover[3000];
-Mover2[] movers2 = new Mover2[3000];
-Mover3[] movers3 = new Mover3[3000];
-Mover4[] movers4 = new Mover4[3000];
-Mover5[] movers5 = new Mover5[3000];
-Mover6[] movers6 = new Mover6[3000];
+Mover[] movers = new Mover[1500];
+Mover2[] movers2 = new Mover2[1500];
+Mover3[] movers3 = new Mover3[1500];
+Mover4[] movers4 = new Mover4[1500];
+Mover5[] movers5 = new Mover5[1500];
+Mover6[] movers6 = new Mover6[1500];
 
 
 
@@ -101,142 +101,74 @@ void draw() {
       if(i == 0){
         for (int j = 0; j < movers.length; j++) {
       
-          //movers[j].update(attractor.x, attractor.y);
+          movers[j].update(attractor.x, attractor.y);
           movers[j].update(attractorHand.x, attractorHand.y);
-//          movers[j].update(attractorHandLeft.x, attractorHandLeft.y);
-          //movers[j].update(attractorHand.x, attractorHand.y);
+          movers[j].update(attractorHandLeft.x, attractorHandLeft.y);
+
           movers[j].display(); 
-          //println(movers.length);
+
         }
-//        for (int j = 0; j < movers.length; j++) {
-//      
-//          movers[j].update(attractorHand.x, attractorHand.y);
-//          //movers[j].update(attractorHand.x, attractorHand.y);
-//          movers[j].display(); 
-//          //println(movers.length);
-//        }
-//        for (int j = 0; j < movers.length; j++) {
-//      
-//          movers[j].update(attractorHandLeft.x, attractorHandLeft.y);
-//          //movers[j].update(attractorHand.x, attractorHand.y);
-//          movers[j].display(); 
-//          //println(movers.length);
-//        }
+
       }
       
       if(i == 1){
         for (int k = 0; k < movers2.length; k++) {
           
-//         movers2[k].update(attractor.x, attractor.y);
+         movers2[k].update(attractor.x, attractor.y);
           movers2[k].update(attractorHand.x, attractorHand.y);
-//          movers2[k].update(attractorHandLeft.x, attractorHandLeft.y);
+          movers2[k].update(attractorHandLeft.x, attractorHandLeft.y);
           movers2[k].display(); 
-          //println(movers.length);
+
         }
-//         for (int k = 0; k < movers2.length; k++) {
-//          
-//          movers2[k].update(attractorHand.x, attractorHand.y);
-//          movers2[k].display(); 
-//          //println(movers.length);
-//        }
-//        for (int k = 0; k < movers2.length; k++) {
-//          
-//          movers2[k].update(attractorHandLeft.x, attractorHandLeft.y);
-//          movers2[k].display(); 
-//          //println(movers.length);
-//        }
+
       }
       
       if(i == 2){
         for (int l = 0; l < movers3.length; l++) {
           
-//          movers3[l].update(attractor.x, attractor.y);
+          movers3[l].update(attractor.x, attractor.y);
           movers3[l].update(attractorHand.x, attractorHand.y);
-//          movers3[l].update(attractorHandLeft.x, attractorHandLeft.y);
+          movers3[l].update(attractorHandLeft.x, attractorHandLeft.y);
           movers3[l].display(); 
-          //println(movers.length);
+
         }
-//        for (int l = 0; l < movers3.length; l++) {
-//          
-//          movers3[l].update(attractorHand.x, attractorHand.y);
-//          movers3[l].display(); 
-//          //println(movers.length);
-//        }
-//        for (int l = 0; l < movers3.length; l++) {
-//          
-//          movers3[l].update(attractorHandLeft.x, attractorHandLeft.y);
-//          movers3[l].display(); 
-//          //println(movers.length);
-//        }
+
       }
       
       if(i == 3){
         for (int m = 0; m < movers4.length; m++) {
           
-//          movers4[m].update(attractor.x, attractor.y);
+          movers4[m].update(attractor.x, attractor.y);
           movers4[m].update(attractorHand.x, attractorHand.y);
-//          movers4[m].update(attractorHandLeft.x, attractorHandLeft.y);
+          movers4[m].update(attractorHandLeft.x, attractorHandLeft.y);
           movers4[m].display(); 
-          //println(movers.length);
+
         }
-//        for (int m = 0; m < movers4.length; m++) {
-//          
-//          movers4[m].update(attractorHand.x, attractorHand.y);
-//          movers4[m].display(); 
-//          //println(movers.length);
-//        }
-//        for (int m = 0; m < movers4.length; m++) {
-//          
-//          movers4[m].update(attractorHandLeft.x, attractorHandLeft.y);
-//          movers4[m].display(); 
-//          //println(movers.length);
-//        }
+
       }
       
       if(i == 4){
         for (int n = 0; n < movers5.length; n++) {
           
-//         movers5[n].update(attractor.x, attractor.y);
+         movers5[n].update(attractor.x, attractor.y);
           movers5[n].update(attractorHand.x, attractorHand.y);
-//          movers5[n].update(attractorHandLeft.x, attractorHandLeft.y);
+          movers5[n].update(attractorHandLeft.x, attractorHandLeft.y);
           movers5[n].display(); 
-          //println(movers.length);
+   
         }
-//        for (int n = 0; n < movers5.length; n++) {
-//          
-//          movers5[n].update(attractorHand.x, attractorHand.y);
-//          movers5[n].display(); 
-//          //println(movers.length);
-//        }
-//        for (int n = 0; n < movers5.length; n++) {
-//          
-//          movers5[n].update(attractorHandLeft.x, attractorHandLeft.y);
-//          movers5[n].display(); 
-//          //println(movers.length);
-//        }
+
       }
       
       if(i == 5){
         for (int o = 0; o < movers6.length; o++) {
           
-//         movers6[o].update(attractor.x, attractor.y);
+         movers6[o].update(attractor.x, attractor.y);
           movers6[o].update(attractorHand.x, attractorHand.y);
-//          movers6[o].update(attractorHandLeft.x, attractorHandLeft.y);
+          movers6[o].update(attractorHandLeft.x, attractorHandLeft.y);
           movers6[o].display(); 
-          //println(movers.length);
+
         }
-//        for (int o = 0; o < movers6.length; o++) {
-//          
-//          movers6[o].update(attractorHand.x, attractorHand.y);
-//          movers6[o].display(); 
-//          //println(movers.length);
-//        }
-//        for (int o = 0; o < movers6.length; o++) {
-//          
-//          movers6[o].update(attractorHandLeft.x, attractorHandLeft.y);
-//          movers6[o].display(); 
-//          //println(movers.length);
-//        }
+
       }
       
       color col  = getIndexColor(i);
