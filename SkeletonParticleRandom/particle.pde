@@ -25,8 +25,10 @@ class Particle{
    
   //method to render the particle. control how it looks here!
   void display(){
+    
     ellipseMode(CENTER);
     fill(d, 0, 255);
+
     ellipse(loc.x, loc.y, sz, sz);
   }
    
@@ -43,7 +45,7 @@ class Particle{
     float force = (gravity*mass) / (d*d);
      
     //if the mouse is pressed, turn on repulsion by multiplying direction by 1
-    if(happy){
+    if(smiling){
       dir.mult(0.1);
     }
     //else multiply the direction by -1 to switch the direction the particle travels in (attraction)
@@ -88,4 +90,3 @@ class Particle{
     update();
   }
 }
-
