@@ -43,7 +43,7 @@ class Particle{
     float force = (gravity*mass) / (d*d);
      
     //if the mouse is pressed, turn on repulsion by multiplying direction by 1
-    if(mousePressed){
+    if(happy){
       dir.mult(0.1);
     }
     //else multiply the direction by -1 to switch the direction the particle travels in (attraction)
