@@ -33,6 +33,7 @@ class Particle{
     //color
     fill(255, 0, d);
     
+    //nan
 //  println(loc.x + " " + loc.y);
 //    println(d);
     ellipse(loc.x, loc.y, sz, sz);
@@ -42,18 +43,31 @@ class Particle{
   //tx and ty are the co-ordinates attraction/repulsion will be applied to
   void forces(float tx, float ty){
 
-    PVector targetLoc = new PVector(tx, ty);  //creating new vector for attractive/repulsive x and y values
+    PVector targetLoc = new PVector(width/2, height/2);
+    
+    float x = Float.NaN; 
+   
+    if(tx != x && ty != x){
+      targetLoc = new PVector(tx, ty);   //creating new vector for attractive/repulsive x and y values
+    }   
+
     PVector dir = PVector.sub(loc, targetLoc);  //calculate the direction between a particle and targetLoc
     d = dir.mag();  //calculate how far away the particle is from targetLoc
     dir.normalize();  //convert the measurement to a unit vector
      
      // ty??? breaks
-     println(tx + " " + ty);
+   
      
     //calculate the strength of the force by factoring in a gravitational constant and the mass of a particle
     //multiply by distance^2
-    float force = (gravity*mass) / (d*d +1);
+    float force = (gravity*mass) / (d*d);
+
+// returns 100
+//    float force = (gravity*mass) ;
+
+//float force = (10*10) ;
      
+       
     //if the person is smiling, turn on repulsion by multiplying direction by 1
     if(smiling){
       dir.mult(0.1);
@@ -69,9 +83,13 @@ class Particle{
    
   //method to apply a force vector to the particle
   void applyForce(PVector force){
-    force.div(mass);//??
+    force.div(mass);//??z
+     
+     println(force);
+        
     acc.add(force);
-    println(force);
+    
+
   }
    
   //method to update the location of the particle, and keep its velocity within a set limit
