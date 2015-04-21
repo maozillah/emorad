@@ -3,9 +3,8 @@ import KinectPV2.*;
 KinectPV2 kinect;
 Skeleton[] skeleton;
 boolean smiling;
+boolean skelD = false;
 FaceData[] faceData;
-
-boolean skeletonDetected;
 //------------------------ INITIALISE VARIABLES ------------------------
 int num = 1000; //how many particles we'll have in the system. More particles = slower sketch.
 Particle[] particle = new Particle[num]; //Initialise array of particles of length "num"
@@ -30,8 +29,7 @@ void setup() {
     //------------------------ DRAW ----------------------------------------
 void draw() {
     // refresh detection of smiling
-    
-skeletonDetected= false;
+    skelD=false;
 
     smiling = false;
     skeleton = kinect.getSkeletonColorMap();
@@ -49,39 +47,38 @@ skeletonDetected= false;
             }
         }
     }
-
-
+    
     //draw trails, trail length can be altered by making alpha value in fill() lower
     fill(255, 50);
     rect(0, 0, width, height);
-    //run all the particles in the array every frame
     
-    if(!skeletonDetected){
-     PVector attractorn = new PVector(width/2, height/2);
-              for (int k = 0; k < particle.length; k++) {
-                  particle[k].run(attractorn.x, attractorn.y); //run() method takes two arguments - x and y values to apply forces to
-              }
-    } 
-              
+    //run all the particles in the array every frame
     for (int i = 0; i < skeleton.length; i++) {
         if (skeleton[i].isTracked()) {
-          skeletonDetected = true;
             KJoint[] joints = skeleton[i].getJoints();
             
+            skelD= true;
+            
             color col  = getIndexColor(i);
-//            fill(col);
+            fill(col);
             stroke(col);
             drawBody(joints);
-
+            
             // use midpoint as attractor for particles
-              PVector attractor = new PVector(joints[KinectPV2.JointType_SpineMid]
-                  .getX(), joints[KinectPV2.JointType_SpineMid].getY());
-              for (int j = 0; j < particle.length; j++) {
-                  particle[j].run(attractor.x, attractor.y); //run() method takes two arguments - x and y values to apply forces to
-              }
-    
-//            }
+            PVector attractorn = new PVector(joints[KinectPV2.JointType_SpineMid]
+                .getX(), joints[KinectPV2.JointType_SpineMid].getY());
+            for (int k = 0; k < particle.length; k++) {
+                particle[k].run(attractorn.x, attractorn.y); //run() method takes two arguments - x and y values to apply forces to
+            }
         }
+    }
+    
+    if (!skelD){
+      println(skelD);
+       PVector attractor = new PVector(width/2, height/2);
+      for (int j = 0; j < particle.length; j++) {
+                particle[j].run(attractor.x, attractor.y); //run() method takes two arguments - x and y values to apply forces to
+            }
     }
     
      if ( keyPressed ) {
@@ -93,10 +90,8 @@ skeletonDetected= false;
 color getIndexColor(int index) {
   color col = color(255);
   if (index == 0)
-  //red
     col = color(255, 0, 0);
   if (index == 1)
-  //green
     col = color(0, 255, 0);
   if (index == 2)
     col = color(0, 0, 255);
