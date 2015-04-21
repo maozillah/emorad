@@ -34,7 +34,7 @@ class Particle{
     ellipseMode(CENTER);
     
     //color
-    fill(d, 129, 131);
+    fill(d*2, 10, 50);
     
     ellipse(loc.x, loc.y, sz, sz);
     if (Float.isNaN(loc.x)) println("nan loc display"); 
@@ -71,10 +71,10 @@ class Particle{
      
     //calculate the strength of the force by factoring in a gravitational constant and the mass of a particle
     //multiply by distance^2
-//    float force = (gravity*mass) / (d*d);
+    float force = (gravity*mass) / (d*d);
     
     //will eventually throw a nan b/c of d
-    float force = (gravity*mass);
+//    float force = (gravity*mass);
     
 //    if (Float.isNaN(force)) println("nan force"); 
     
