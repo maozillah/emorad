@@ -20,11 +20,8 @@ void setup() {
         smooth(); //turn on anti-aliasing
         noStroke();
         background(255);
-        //fill particle array with new Particle objects
-        for (int i = 0; i < particle.length; i++) {
-            particle[i] = new Particle(new PVector(random(0, width), random(0,
-                height)), 3, 10, 10);
-        }
+
+      intializeParticles();
     }
     //------------------------ DRAW ----------------------------------------
 void draw() {
@@ -56,6 +53,7 @@ void draw() {
     for (int i = 0; i < skeleton.length; i++) {
         if (skeleton[i].isTracked()) {
             KJoint[] joints = skeleton[i].getJoints();
+            println(skelD);
             
             skelD= true;
             
@@ -84,6 +82,14 @@ void draw() {
      if ( keyPressed ) {
     saveFrame("process/##.png");
   }
+}
+
+void intializeParticles() {
+  
+  for (int i = 0; i < particle.length; i++) {
+            particle[i] = new Particle(new PVector(random(0, width), random(0,
+                height)), 3, 10, 10);
+        }
 }
 
 //use different color for each skeleton tracked

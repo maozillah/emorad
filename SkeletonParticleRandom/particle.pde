@@ -31,7 +31,7 @@ class Particle{
     ellipseMode(CENTER);
     
     //color
-    fill(255, 0, d);
+    fill(d, 0, 255);
     
 //  println(loc.x + " " + loc.y);
 //    println(d);
