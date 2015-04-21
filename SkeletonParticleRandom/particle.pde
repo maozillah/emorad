@@ -33,8 +33,6 @@ class Particle{
     //color
     fill(d, 0, 255);
     
-//  println(loc.x + " " + loc.y);
-//    println(d);
     ellipse(loc.x, loc.y, sz, sz);
   }
    
@@ -42,17 +40,26 @@ class Particle{
   //tx and ty are the co-ordinates attraction/repulsion will be applied to
   void forces(float tx, float ty){
 
-    PVector targetLoc = new PVector(width/2, height/2);
+//    PVector targetLoc = new PVector(width/2, height/2);
     
+    PVector targetLoc = new PVector(tx, ty);
     float x = Float.NaN; 
    
-    if(tx != x && ty != x){
-      targetLoc = new PVector(tx, ty);   //creating new vector for attractive/repulsive x and y values
-    }  
+//    if(tx != x && ty != x){
+//      targetLoc = new PVector(tx, ty);   //creating new vector for attractive/repulsive x and y values
+//    }  
+    
+    //checking for nan
+    if (Float.isNaN(ty)) println("nan ty"); 
+    if (Float.isNaN(tx)) println("nan tx"); 
+    if (Float.isNaN(targetLoc.y)) println("nan targetLoc"); 
     
     PVector dir = PVector.sub(loc, targetLoc);  //calculate the direction between a particle and targetLoc
     d = dir.mag();  //calculate how far away the particle is from targetLoc
     dir.normalize();  //convert the measurement to a unit vector
+    
+    if (Float.isNaN(d)) println("nan d"); 
+    if (Float.isNaN(dir.x)) println("nan dir"); 
      
      // ty??? breaks
 //     println(tx + " " + ty);
@@ -60,7 +67,9 @@ class Particle{
     //calculate the strength of the force by factoring in a gravitational constant and the mass of a particle
     //multiply by distance^2
     float force = (gravity*mass) / (d*d);
-     
+    
+    if (Float.isNaN(force)) println("nan force"); 
+    
     //if the person is smiling, turn on repulsion by multiplying direction by 1
     if(smiling){
       dir.mult(0.1);
@@ -77,16 +86,26 @@ class Particle{
   //method to apply a force vector to the particle
   void applyForce(PVector force){
     force.div(mass);//??
+    
+     if (Float.isNaN(force.x)) println("nan force applyforce"); 
     acc.add(force);
+    
+     if (Float.isNaN(acc.x)) println("nan acc applyforce"); 
 //    println(force);
   }
    
   //method to update the location of the particle, and keep its velocity within a set limit
   void update(){
     vel.add(acc);
+    if (Float.isNaN(vel.x)) println("nan vel update"); 
+    if (Float.isNaN(acc.x)) println("nan acc update"); 
+    
     vel.limit(velocityLimit);
     loc.add(vel);
+    if (Float.isNaN(loc.x)) println("nan loc update"); 
+    
     acc.mult(0);
+    if (Float.isNaN(acc.x)) println("nan final acc update"); 
   }
    
   //method to bounce particles of canvas edges
@@ -102,6 +121,9 @@ class Particle{
   //main method that combines all previous methods, and takes two arguments
   //tx and ty are inherited from forces(), and set the attractive/repulsive co-ords
   void run(float tx, float ty){
+     if (Float.isNaN(ty)) println("nan ty run"); 
+    if (Float.isNaN(tx)) println("nan tx run"); 
+    
     forces(tx, ty);
     display();
     bounds();

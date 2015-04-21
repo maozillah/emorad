@@ -25,6 +25,7 @@ void setup() {
     }
     //------------------------ DRAW ----------------------------------------
 void draw() {
+  
     // refresh detection of smiling
     skelD=false;
 
@@ -72,7 +73,7 @@ void draw() {
     }
     
     if (!skelD){
-      println(skelD);
+//      println(skelD);
        PVector attractor = new PVector(width/2, height/2);
       for (int j = 0; j < particle.length; j++) {
                 particle[j].run(attractor.x, attractor.y); //run() method takes two arguments - x and y values to apply forces to
