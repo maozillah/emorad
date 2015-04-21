@@ -15,7 +15,7 @@ class Particle{
   int velocityLimit = 5;  //the maximum velocity a particle can travel at
   float d;  //distance variable between particle and the target co-ordinates
  
-  //CONSTRUCTOR
+  //CONSTRUCTOR only runs once
   Particle(PVector _loc, int _sz, float _gravity, float _mass){
     loc = _loc.get();  //when calling loc, return current location of the selected particle
     vel = new PVector(0, 0);  //set vel and acc vectors to 0 as default
@@ -23,6 +23,9 @@ class Particle{
     sz = _sz;
     gravity = _gravity;
     mass = _mass;
+    
+//    println(loc);
+    
   }
    
   //method to render the particle. control how it looks here!
@@ -31,9 +34,10 @@ class Particle{
     ellipseMode(CENTER);
     
     //color
-    fill(d, 0, 255);
+    fill(d, 129, 131);
     
     ellipse(loc.x, loc.y, sz, sz);
+    if (Float.isNaN(loc.x)) println("nan loc display"); 
   }
    
   //math for attraction and repulsion forces
@@ -58,6 +62,7 @@ class Particle{
     d = dir.mag();  //calculate how far away the particle is from targetLoc
     dir.normalize();  //convert the measurement to a unit vector
     
+     if (Float.isNaN(loc.x)) println("nan loc"); 
     if (Float.isNaN(d)) println("nan d"); 
     if (Float.isNaN(dir.x)) println("nan dir"); 
      
@@ -66,9 +71,12 @@ class Particle{
      
     //calculate the strength of the force by factoring in a gravitational constant and the mass of a particle
     //multiply by distance^2
-    float force = (gravity*mass) / (d*d);
+//    float force = (gravity*mass) / (d*d);
     
-    if (Float.isNaN(force)) println("nan force"); 
+    //will eventually throw a nan b/c of d
+    float force = (gravity*mass);
+    
+//    if (Float.isNaN(force)) println("nan force"); 
     
     //if the person is smiling, turn on repulsion by multiplying direction by 1
     if(smiling){
@@ -85,7 +93,7 @@ class Particle{
    
   //method to apply a force vector to the particle
   void applyForce(PVector force){
-    force.div(mass);//??
+    force.div(mass);// dir unit vector/mass
     
      if (Float.isNaN(force.x)) println("nan force applyforce"); 
     acc.add(force);
@@ -102,10 +110,16 @@ class Particle{
     
     vel.limit(velocityLimit);
     loc.add(vel);
+
+// PVector v1 = new PVector(40, 20);
+//    loc.add(v1);
     if (Float.isNaN(loc.x)) println("nan loc update"); 
     
     acc.mult(0);
-    if (Float.isNaN(acc.x)) println("nan final acc update"); 
+    if (Float.isNaN(acc.x)) {
+      println("nan final acc update");
+//   exit();
+ }
   }
    
   //method to bounce particles of canvas edges
@@ -124,7 +138,7 @@ class Particle{
      if (Float.isNaN(ty)) println("nan ty run"); 
     if (Float.isNaN(tx)) println("nan tx run"); 
     
-    forces(tx, ty);
+    forces(tx, ty); // then apply force
     display();
     bounds();
     update();
